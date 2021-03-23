@@ -19,7 +19,7 @@
 
 		.grid {
 			display: grid;
-			grid-template-columns: 40px 1fr 1fr 1fr;
+			grid-template-columns: 50px 1fr 1fr 1fr;
 			grid-template-rows: 1fr 1fr;
 
 			height: 100%;
@@ -66,30 +66,50 @@
 			padding: 20px;
 			font-size: 25px;
 		}
+
+		@media (max-width: 931px) {
+			.grid {
+				display: grid;
+				grid-template-columns: 1fr;
+				/* grid-auto-rows: min-content; */
+				grid-template-rows: min-content;
+
+				height: 100%;
+			}
+
+			nav {
+
+			}
+
+			.grid > div {
+				grid-row: auto;
+				grid-column: 1;
+			}
+		}
 	</style>
 </head>
 <body>
 	<div class="grid">
 		<nav class="nav">Nav</nav>
 		<div class="in-park-with-one">
-			Lady A in a Park with one friend
-			<div data-start-point="1609174710000"></div>
+			Bottles of Lady A in the park with a friend
+			<div data-start-point="0"></div>
 		</div>
 		<div class="in-park-with-five">
-			Park with five
-			<div data-start-point="1619174710000"></div>
+			Magnums of Lady A in the park with 5 friends
+			<div data-start-point="1616972401000"></div>
 		</div>
 		<div class="in-beer-garden-with-five">
-			Beer garden with five
-			<div data-start-point="1619174710000"></div>
+			White City Rooftop with 5 friends
+			<div data-start-point="1618182001000"></div>
 		</div>
 		<div class="in-pub-with-five">
-			In pub with five
-			<div data-start-point="1619174710000"></div>
+			Shoreditch House living room with 5 friends
+			<div data-start-point="1621206001000"></div>
 		</div>
 		<div class="everywhere-everyone">
-			Everywhere with everyone
-			<div data-start-point="1619174710000"></div>
+			Every House, with every member
+			<div data-start-point="1624230001000"></div>
 		</div>
 	</div>
 
@@ -100,11 +120,12 @@
 			document.querySelectorAll('div[data-start-point]').forEach(elem => {
 				const startPoint = Number(elem.dataset.startPoint);
 				const diff = now - startPoint;
+				const posDif = Math.round(-diff / 1000);
 
 				if (diff > 0) {
 					elem.innerHTML = 'You can now!';
 				} else {
-					elem.innerHTML = 'Not yet...';
+					elem.innerHTML = `${posDif} seconds`;
 				}
 			});
 		}
