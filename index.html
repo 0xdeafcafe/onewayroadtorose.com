@@ -120,12 +120,13 @@
 			document.querySelectorAll('div[data-start-point]').forEach(elem => {
 				const startPoint = Number(elem.dataset.startPoint);
 				const diff = now - startPoint;
-				const posDif = Math.round(-diff / 1000);
 
 				if (diff > 0) {
 					elem.innerHTML = 'You can now!';
 				} else {
-					elem.innerHTML = `${posDif} seconds`;
+					const days = Math.round((-diff / 1000) / 86400);
+
+					elem.innerHTML = `${days} ${days === 1 ? 'day!' : 'days'}`;
 				}
 			});
 		}
