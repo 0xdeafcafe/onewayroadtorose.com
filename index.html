@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+
+	<title>The One Way Road to Rosé</title>
+
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			height: 100vh;
+			font-family: 'Open Sans', sans-serif;
+		}
+
+		.grid {
+			display: grid;
+			grid-template-columns: 40px 1fr 1fr 1fr;
+			grid-template-rows: 1fr 1fr;
+
+			height: 100%;
+		}
+
+		nav {
+			background: black;
+			color: white;
+			grid-column: 1;
+			grid-row: 1 / span 2;
+		}
+
+		.in-park-with-one {
+			background: rgb(253, 91, 42);
+			grid-column: 2;
+			grid-row: 1;
+		}
+
+		.in-park-with-five {
+			background: rgb(250, 156, 190);
+			grid-column: 3 / span 2;
+			grid-row: 1;
+		}
+
+		.in-beer-garden-with-five {
+			background: rgb(147, 209, 172);
+			grid-column: 2;
+			grid-row: 2;
+		}
+
+		.in-pub-with-five {
+			background: rgb(255, 182, 18);
+			grid-column: 3;
+			grid-row: 2;
+		}
+
+		.everywhere-everyone {
+			background: rgb(137, 101, 221);
+			grid-column: 4;
+			grid-row: 2;
+		}
+		
+		.grid > div {
+			padding: 20px;
+			font-size: 25px;
+		}
+	</style>
+</head>
+<body>
+	<div class="grid">
+		<nav class="nav">Nav</nav>
+		<div class="in-park-with-one">
+			Lady A in a Park with one friend
+			<div data-start-point="1609174710000"></div>
+		</div>
+		<div class="in-park-with-five">
+			Park with five
+			<div data-start-point="1619174710000"></div>
+		</div>
+		<div class="in-beer-garden-with-five">
+			Beer garden with five
+			<div data-start-point="1619174710000"></div>
+		</div>
+		<div class="in-pub-with-five">
+			In pub with five
+			<div data-start-point="1619174710000"></div>
+		</div>
+		<div class="everywhere-everyone">
+			Everywhere with everyone
+			<div data-start-point="1619174710000"></div>
+		</div>
+	</div>
+
+	<script type="application/javascript">
+		function renderTimes() {
+			const now = Date.now();
+			
+			document.querySelectorAll('div[data-start-point]').forEach(elem => {
+				const startPoint = Number(elem.dataset.startPoint);
+				const diff = now - startPoint;
+
+				if (diff > 0) {
+					elem.innerHTML = 'You can now!';
+				} else {
+					elem.innerHTML = 'Not yet...';
+				}
+			});
+		}
+
+		window.setInterval(renderTimes, 1000);
+		renderTimes();
+	</script>
+</body>
+</html>
